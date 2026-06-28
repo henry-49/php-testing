@@ -1,14 +1,18 @@
 <?php 
+// phpunit --help
 // composer require --dev phpunit/phpunit
 // alias phpunit='vendor/bin/phpunit'
+// phpunit tests/FunctionsTest.php --colors
+// phpunit tests/FunctionsTest.php --colors --testdox
+// phpunit tests/FunctionsTest.php  --bootstrap tests/bootstrap.php
+// phpunit --generate-configuration 
+
 
 declare(strict_types=1); 
 
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-
-require  dirname(__DIR__ ). '/lib/functions.php';
 
 final class FunctionsTest extends TestCase
 {
