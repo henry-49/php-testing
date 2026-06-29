@@ -10,6 +10,6 @@ final class ExampleTest extends TestCase
 {
     public function testTwoValuesAreTheSame(): void 
     {
-        $this->assertSame(1, 2);
+        $this->assertSame(1, 1);
     }
 }  

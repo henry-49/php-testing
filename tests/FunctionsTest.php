@@ -13,32 +13,32 @@ declare(strict_types=1);
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class FunctionsTest extends TestCase
 {
-
-    public function testAddTwoPositiveIntegers(): void 
+    /**
+     * @dataProvider additionProvider
+     */
+    public static function additionProvider(): array 
     {
-        $this->assertSame(5, addIntegers(2, 3));
+        return [
+           'Two positive integers' => [2, 3, 5],
+            'Two negative integers' => [-2, -3, -5],
+            'Positive and negative integer' => [3, -2, 1],
+            'Adding zero to integer' => [3, 0, 3],
+        ];
     }
 
-    public function testAddTwoNegativeIntegers(): void 
+    #[DataProvider('additionProvider')]
+    public function testAddIntegers(int $a, int $b, int $expected): void 
     {
-        $this->assertSame(-5, addIntegers(-3, -2));
-    }
-    
-    public function testAddPositiveAndNegativeInteger(): void 
-    {
-        $this->assertSame(1, addIntegers(3, -2));
-    }
+        $this->assertSame($expected, addIntegers($a, $b));
+    }    
 
-    public function testAddZeroToInteger(): void 
-    {
-        $this->assertSame(3, addIntegers(3, 0));
-    }
-
+    // Test that adding two integers is commutative
     public function testAddingIsCommutative(): void 
     {
-        $this->assertSame(addIntegers(3, 2), addIntegers(3, 2));
+        $this->assertSame(addIntegers(3, 2), addIntegers(2, 3));
     }
 }  
