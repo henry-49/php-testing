@@ -19,7 +19,7 @@ class Queue
           throw new \UnderflowException('Queue is empty'); 
       }
       
-      return array_pop($this->items);
+      return array_shift($this->items);
     }
 
     public function getSize(): int

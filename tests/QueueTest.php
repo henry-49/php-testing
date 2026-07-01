@@ -48,10 +48,20 @@ final class QueueTest extends TestCase
         $this->assertSame(0, $this->queue->getSize());
     }
 
+    public function testAnItemIsRemovedFromTheFrontOfTheQueue(): void 
+    {
+        $this->queue->push('item1');
+        $this->queue->push('item2');
+
+        $this->assertSame('item1', $this->queue->pop());
+    }
+
     public function testPopThrowsExceptionWhenQueueIsEmpty(): void 
     {
         $this->expectException(\UnderflowException::class);
-        $this->queue = new Queue;
+        $this->expectExceptionMessage('Queue is empty');
+        
+        // This is a test to ensure that popping from an empty queue throws an UnderflowException
         $this->queue->pop();
     }
 }
